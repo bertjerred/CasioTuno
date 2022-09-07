@@ -46,7 +46,7 @@ const byte ROWS = 9;
 const byte COLS = 6;
 
 // I am setting the lowest C piano key as "C3," aka MIDI Note 48...
-byte hexaKeys[ROWS][COLS] = {
+byte mt240Keys[ROWS][COLS] = {
   {53, 52, 51, 50, 49, 48},
   {59, 58, 57, 56, 55, 54},
   {71, 70, 69, 68, 67, 66},
@@ -59,10 +59,10 @@ byte hexaKeys[ROWS][COLS] = {
 };
 
 // I am using the PCF8575 to handle the keyboard matrix so as not to use up all of my Uno pins
-byte rowPins[ROWS] = {P0, P1, P2, P3, P4, P5, P6, P7, P8};
-byte colPins[COLS] = {P9, P10, P11, P12, P13, P14};
+byte rowPins[ROWS] = {0, 1, 2, 3, 4, 5, 6, 7, 8};
+byte colPins[COLS] = {9, 10, 11, 12, 13, 14};
 
-Keypad customKeypad = Keypad( makeKeymap(hexaKeys), rowPins, colPins, ROWS, COLS);
+Keypad customKeypad = Keypad( makeKeymap(mt240Keys), rowPins, colPins, ROWS, COLS);
 
 void setup() {
   Serial.begin(9600);
@@ -78,7 +78,3 @@ void loop() {
     // make sounds happen!
   }
 }
-
-// PCF8575 code modified from originals: Mischianti Renzo <http://www.mischianti.org>
-// https://www.mischianti.org/2019/01/02/pcf8575-i2c-digital-i-o-expander-fast-easy-usage/
-// Keypad code modified from originals: Alexander Brevig <alexanderbrevig@gmail.com>
